@@ -67,8 +67,9 @@ const candidatos = {
     nome: "Renan Santos (Missão)",
     foto: "imagens/Renan_Santos_-_Congresso_do_Partido_Missão,_2026_(cropped).jpg",
     areas: SEM_REGISTRO
-  
-    zema: {
+  },
+
+  zema: {
     nome: "Romeu Zema (Novo)",
     foto: "imagens/Romeu_Zema.jpg",
     areas: [
@@ -96,7 +97,7 @@ const candidatos = {
 
   caiado: {
     nome: "Ronaldo Caiado (PSD)",
-    foto: "imagens/Caiado.jpg",
+    foto: "imagens/Caiado,jpg",
     areas: [
       {
         titulo: "Governo de Goiás: Fundação Pró-Cerrado",
