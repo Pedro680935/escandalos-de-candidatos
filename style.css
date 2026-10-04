@@ -1,0 +1,80 @@
+:root{
+    --cor-fundo:  #363636 ;
+    --cor-principal:  #0c0c0c ;
+    --cor-secundaria:  #212333 ;
+    --cor-destaque:  #f9bb27 ;
+    --cor-texto:  #D7F9FF ;
+    --branco:  #ffffff ;
+}
+
+h1 {
+    color: var(--branco);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+p {
+    color: var(--cor-texto);
+    line-height: 1.6;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.caixa-principal {
+    background-color: var(--cor-fundo);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: var(--cor-destaque);
+}
+
+.botoes {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: center;
+}
+
+button {
+  padding: 10px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--branco);
+  color: black;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #154a99;
+}
+
+#propostas {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 6px;
+  background-color: var(--branco);
+  display: none; /* escondido até clicar em um botão */
+  text-align: center;
+  justify-content: center;
+}
+
+.foto {
+  display: block;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;        /* não deforma a foto */
+  border-radius: 50%;       /* deixa redonda; tire para ficar quadrada */
+  border: 4px solid var(--cor-destaque);
+  margin: 0 auto 15px auto; /* centraliza e dá espaço embaixo */
+}
+
+#propostas h2 {
+  text-align: center;       /* centraliza o nome embaixo da foto */
+}
