@@ -97,7 +97,7 @@ const candidatos = {
 
   caiado: {
     nome: "Ronaldo Caiado (PSD)",
-    foto: "imagens/Caiado,jpg",
+    foto: "imagens/Caiado.jpg",
     areas: [
       {
         titulo: "Governo de Goiás: Fundação Pró-Cerrado",
