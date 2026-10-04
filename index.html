@@ -1,25 +1,32 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Propostas dos candidatos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Casos de corrupção e crimes dos candidatos à Presidência 2026</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="caixa-principal">
-    
-    <h1>Propostas de cada candidato a presidência da república.</h1>
-    
-    <p>Candidatos:</p>
-    
-    <div class="botoes">
-    <button onclick="mostrarProposta('lula')">Lula</button>
-    <button onclick="mostrarProposta('renan')">Renan</button>
-    <button onclick="mostrarProposta('flavio')">Flávio</button>
-  </div>
+  <header>
+    <h1>Candidatos à Presidência 2026</h1>
+    <p>Casos de corrupção, crimes e lavagem de dinheiro, com o status jurídico de cada um. Escolha um candidato.</p>
+  </header>
 
-  <div id="propostas"></div>
-    </div>
+  <nav class="botoes">
+    <button data-id="lula">Lula (PT)</button>
+    <button data-id="flavio">Flávio Bolsonaro (PL)</button>
+    <button data-id="renan">Renan Santos (Missão)</button>
+    <button data-id="zema">Zema (Novo)</button>
+    <button data-id="caiado">Caiado (PSD)</button>
+    <button data-id="cury">Augusto Cury (Avante)</button>
+  </nav>
+
+  <main id="escandalos"></main>
+
+  <footer>
+    <p>Informações de reportagens e decisões públicas até 03/10/2026. Status podem mudar; confira as fontes e as certidões no DivulgaCandContas (TSE).</p>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
