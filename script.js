@@ -1,9 +1,7 @@
 // Candidatos selecionados: lula, flavio, renan, zema, caiado, cury.
 // Pablo Marçal (PRTB) teve a candidatura indeferida e não está na lista.
 // Cada caso traz o "status" jurídico, para não misturar acusação com condenação.
-// Status usados: "Condenação anulada", "Provas anuladas", "Denunciado", "Indiciado",
-// "Em investigação", "Denúncia a órgão de controle", "Sem condenação", "Ação civil",
-// "Sem registro encontrado"
+// Status usados: veja CLASSE_POR_STATUS mais abaixo.
 
 const SEM_REGISTRO = [{
   titulo: "Corrupção, crimes e lavagem de dinheiro",
@@ -66,7 +64,14 @@ const candidatos = {
   renan: {
     nome: "Renan Santos (Missão)",
     foto: "imagens/Renan_Santos_-_Congresso_do_Partido_Missão,_2026_(cropped).jpg",
-    areas: SEM_REGISTRO
+    areas: [
+      {
+        titulo: "Outros processos (não são casos de corrupção)",
+        casos: [
+          { status: "Ação civil", texto: "MPF processou Renan e o MBL por ofensas a indígenas do Baixo Tapajós (PA) e pede R$ 500 mil de indenização, retratação e retirada dos vídeos. É ação civil, não criminal, e ainda não foi julgada." }
+        ]
+      }
+    ]
   },
 
   zema: {
@@ -112,51 +117,98 @@ const candidatos = {
     nome: "Augusto Cury (Avante)",
     foto: "imagens/Augusto_Cury.jpg",
     areas: SEM_REGISTRO
-  },
-
-
-
-
-
-
+  }
 };
 
+const DATA_ATUALIZACAO = "08/10/2026";
 
-function classeStatus(status) {
-  if (status.indexOf("anulad") !== -1) return "anulada";
-  if (status.indexOf("investiga") !== -1) return "investigacao";
-  if (status.indexOf("Denunciado") !== -1) return "denunciado";
-  if (status.indexOf("Sem") !== -1) return "neutro";
-  return "outro";
+// ============================================================
+// STATUS -> COR (classe do CSS). Status fora da lista usa "outro".
+// ============================================================
+const CLASSE_POR_STATUS = {
+  "Condenado": "condenado",
+  "Condenação anulada": "anulada",
+  "Provas anuladas": "anulada",
+  "Em investigação": "investigacao",
+  "Indiciado": "investigacao",
+  "Denúncia a órgão de controle": "investigacao",
+  "Denunciado": "denunciado",
+  "Ação civil": "denunciado",
+  "Sem condenação": "neutro",
+  "Sem registro encontrado": "neutro",
+  "A preencher": "neutro",
+  "Neutro": "neutro"
+};
+
+// ============================================================
+// RENDERIZAÇÃO
+// ============================================================
+function renderizarCaso(caso) {
+  const classe = CLASSE_POR_STATUS[caso.status] || "outro";
+  // Uma linha em branco dentro do texto vira um novo parágrafo.
+  const paragrafos = String(caso.texto)
+    .split(/\n\s*\n/)
+    .map(p => p.trim())
+    .filter(Boolean)
+    .map(p => `<p>${p}</p>`)
+    .join("");
+  return `<li><span class="status ${classe}">${caso.status}</span>${paragrafos}</li>`;
 }
 
-function mostrarCandidato(id) {
-  const candidato = candidatos[id];
-  const caixa = document.getElementById("escandalos");
+function renderizarAreas(areas) {
+  return areas
+    .map(area => `
+      <h3>${area.titulo}</h3>
+      <ul>${area.casos.map(renderizarCaso).join("")}</ul>`)
+    .join("");
+}
 
-  let html = '<div class="cabecalho">';
-  if (candidato.foto) {
-    html += '<img class="foto" src="' + candidato.foto + '" alt="' + candidato.nome + '">';
-  }
-  html += "<h2>" + candidato.nome + "</h2></div>";
-  html += '<p class="aviso">Investigação ou denúncia não é condenação. Cada caso mostra o status jurídico conhecido em 03/10/2026.</p>';
+function renderizarCandidato(candidato) {
+  const foto = candidato.foto
+    ? `<img class="foto" src="${candidato.foto}" alt="${candidato.nome}" onerror="this.remove()">`
+    : "";
+  return `
+    <div class="cabecalho">${foto}<h2>${candidato.nome}</h2></div>
+    <p class="aviso">Investigação ou denúncia não é condenação. Cada caso mostra o status jurídico conhecido em ${DATA_ATUALIZACAO}.</p>
+    ${renderizarAreas(candidato.areas)}`;
+}
 
-  for (const area of candidato.areas) {
-    html += "<h3>" + area.titulo + "</h3><ul>";
-    for (const caso of area.casos) {
-      html += '<li><span class="status ' + classeStatus(caso.status) + '">' + caso.status + "</span> " + caso.texto + "</li>";
+function renderizarEscandalo(escandalo) {
+  return `
+    <div class="cabecalho"><h2>${escandalo.nome}</h2></div>
+    <p class="aviso">Investigação ou denúncia não é condenação. Status conhecido em ${DATA_ATUALIZACAO}.</p>
+    ${renderizarAreas(escandalo.areas)}`;
+}
+
+// ============================================================
+// BOTÕES: liga uma barra de botões a uma área de resultado.
+// Clicar de novo no botão aberto fecha.
+// ============================================================
+function ativarBotoes(idNav, idResultado, dados, renderizar) {
+  const nav = document.getElementById(idNav);
+  const resultado = document.getElementById(idResultado);
+  if (!nav || !resultado) return;
+
+  nav.addEventListener("click", function (evento) {
+    const botao = evento.target.closest("button");
+    const item = botao && dados[botao.dataset.id];
+    if (!item) return;
+
+    const fechar = botao.classList.contains("ativo");
+
+    if (fechar) {
+      resultado.hidden = true;
+      resultado.innerHTML = "";
+    } else {
+      resultado.innerHTML = renderizar(item);
+      resultado.hidden = false;
     }
-    html += "</ul>";
-  }
 
-  caixa.innerHTML = html;
-  caixa.style.display = "block";
-
-  document.querySelectorAll(".botoes button").forEach(function (b) {
-    b.classList.toggle("ativo", b.dataset.id === id);
+    nav.querySelectorAll("button").forEach(function (b) {
+      b.classList.toggle("ativo", !fechar && b === botao);
+    });
   });
 }
 
-document.querySelectorAll(".botoes button").forEach(function (b) {
-  b.addEventListener("click", function () { mostrarCandidato(b.dataset.id); });
-});
+ativarBotoes("nav-candidatos", "resultado-candidato", candidatos, renderizarCandidato);
+ativarBotoes("nav-escandalos", "resultado-escandalo", escandalos, renderizarEscandalo);

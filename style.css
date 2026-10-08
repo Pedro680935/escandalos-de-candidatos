@@ -1,27 +1,38 @@
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
 body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: #f2f3f5; color: #222; line-height: 1.5; }
+
+/* Cabeçalhos (candidatos e escândalos) */
 header { background: #1f2937; color: #fff; text-align: center; padding: 28px 16px; }
 header h1 { margin: 0 0 8px; font-size: 1.7rem; }
 header p { margin: 0; color: #d1d5db; }
+.secao-escandalos { margin-top: 40px; }
+
+/* Botões */
 .botoes { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 20px 16px; max-width: 900px; margin: 0 auto; }
 .botoes button { border: 2px solid #1f2937; background: #fff; color: #1f2937; padding: 10px 18px; border-radius: 999px; font-size: 1rem; cursor: pointer; }
 .botoes button:hover { background: #e5e7eb; }
 .botoes button.ativo { background: #1f2937; color: #fff; }
-#escandalos { display: none; max-width: 800px; margin: 0 auto 30px; background: #fff; padding: 24px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,.1); }
+
+/* Caixa de resultado */
+.resultado { max-width: 800px; margin: 0 auto 30px; background: #fff; padding: 24px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,.1); }
 .cabecalho { display: flex; align-items: center; gap: 18px; }
 .foto { width: 110px; height: 110px; object-fit: cover; object-position: top; border-radius: 50%; border: 3px solid #1f2937; }
 h2 { margin: 0; }
 h3 { margin: 24px 0 8px; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
 .aviso { background: #fff7e6; border-left: 4px solid #f59e0b; padding: 10px 12px; font-size: .92rem; }
 ul { padding-left: 20px; }
-li { margin-bottom: 12px; }
-.status { display: inline-block; font-size: .75rem; font-weight: bold; padding: 2px 8px; border-radius: 4px; color: #fff; background: #6b7280; margin-right: 4px; }
+li { margin-bottom: 16px; }
+li p { margin: 0 0 .6rem; }
+
+/* Selos de status */
+.status { display: inline-block; font-size: .75rem; font-weight: bold; padding: 2px 8px; border-radius: 4px; color: #fff; background: #6b7280; margin-bottom: .4rem; }
 .status.anulada { background: #2563eb; }
 .status.investigacao { background: #d97706; }
 .status.denunciado { background: #dc2626; }
+.status.condenado { background: #7a1f1f; }
 .status.neutro { background: #6b7280; }
-footer { text-align: center; font-size: .85rem; color: #6b7280; padding: 0 16px 30px; max-width: 800px; margin: 0 auto; }
+.status.outro { background: #6b7280; }
 
-.escandalos { background: #1f2937; color: #fff; text-align: center; padding: 28px 16px; }
-.escandalos h1 { margin: 0 0 8px; font-size: 1.7rem; }
-.escandalos p { margin: 0; color: #d1d5db; }
+footer { text-align: center; font-size: .85rem; color: #6b7280; padding: 0 16px 30px; max-width: 800px; margin: 0 auto; }

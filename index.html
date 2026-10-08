@@ -7,12 +7,14 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <!-- ===== CANDIDATOS ===== -->
   <header>
     <h1>Candidatos à Presidência 2026</h1>
     <p>Casos de corrupção, crimes e lavagem de dinheiro, com o status jurídico de cada um. Escolha um candidato.</p>
   </header>
 
-  <nav class="botoes">
+  <nav class="botoes" id="nav-candidatos">
     <button data-id="lula">Lula (PT)</button>
     <button data-id="flavio">Flávio Bolsonaro (PL)</button>
     <button data-id="renan">Renan Santos (Missão)</button>
@@ -21,24 +23,31 @@
     <button data-id="cury">Augusto Cury (Avante)</button>
   </nav>
 
-    <div class="escandalos">
-      <h1>Escândalos e processos mais famosos do Brasil</h1>
-      <p>Casos de corrupção, crimes e lavagem de dinheiro escolha um.</p>
-  <main id="escandalos"></main>
-  <nav class="botoes">
-    <button data-id="Banco Master">Banco Master</button>
-    <button data-id="Operação Lava Jato (Petrolão)">Operação Lava Jato (Petrolão)</button>
-    <button data-id="Escândalo do Mensalão(2005)">Escândalo do Mensalão(2005)</button>
-    <button data-id="Caso do INSS">Caso do INSS</button>
-    <button data-id="Operação Em Nome do Pai">Operação "Em Nome do Pai"</button>
-    <button data-id="Operações de desvio em verbas públicas e saúde (como fraudes no INSS e medicamentos)">Operações de desvio em verbas públicas e saúde (como fraudes no INSS e medicamentos)</button>  
+  <main class="resultado" id="resultado-candidato" hidden></main>
+
+  <!-- ===== ESCÂNDALOS ===== -->
+  <header class="secao-escandalos">
+    <h1>Escândalos e processos mais famosos do Brasil</h1>
+    <p>Casos de corrupção, crimes e lavagem de dinheiro. Escolha um.</p>
+  </header>
+
+  <!-- Os data-id precisam ser iguais às chaves do escandalos.js -->
+  <nav class="botoes" id="nav-escandalos">
+    <button data-id="banco-master">Banco Master</button>
+    <button data-id="lava-jato">Operação Lava Jato (Petrolão)</button>
+    <button data-id="mensalao">Escândalo do Mensalão (2005)</button>
+    <button data-id="inss">Caso do INSS</button>
+    <button data-id="em-nome-do-pai">Operação "Em Nome do Pai"</button>
+    <button data-id="desvios-saude">Desvios em verbas públicas e saúde</button>
   </nav>
-      </div>
+
+  <main class="resultado" id="resultado-escandalo" hidden></main>
 
   <footer>
-    <p>Informações de reportagens e decisões públicas até 03/10/2026. Status podem mudar; confira as fontes e as certidões no DivulgaCandContas (TSE).</p>
+    <p>Informações de reportagens e decisões públicas até 08/10/2026. Status podem mudar; confira as fontes e as certidões no DivulgaCandContas (TSE).</p>
   </footer>
 
+  <script src="escandalos.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
