@@ -66,7 +66,14 @@ const candidatos = {
   renan: {
     nome: "Renan Santos (Missão)",
     foto: "imagens/Renan_Santos_-_Congresso_do_Partido_Missão,_2026_(cropped).jpg",
-    areas: SEM_REGISTRO
+    areas: [
+      {
+        titulo: "Outros processos (não são casos de corrupção)",
+        casos: [
+          { status: "Ação civil", texto: "MPF processou Renan e o MBL por ofensas a indígenas do Baixo Tapajós (PA) e pede R$ 500 mil de indenização, retratação e retirada dos vídeos. É ação civil, não criminal, e ainda não foi julgada." }
+        ]
+      }
+    ]
   },
 
   zema: {
